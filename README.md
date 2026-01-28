@@ -29,6 +29,7 @@ KSP
 📸 Screenshots – App UI
 
 | Home Screen | About Screen |
+|------------|-------------|
 | <img src="screenshots/home.png" width="250"> | <img src="screenshots/dialog.png" width="250"> |
 
 🛠️ How to Run the Project
