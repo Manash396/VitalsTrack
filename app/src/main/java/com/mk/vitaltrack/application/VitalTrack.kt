@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
 import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.mk.vitaltrack.worker.VitalWorker
@@ -19,7 +20,7 @@ class VitalTrack : Application() {
     }
 
     private fun scheduleVitalsReminder() {
-        val workRequest = PeriodicWorkRequestBuilder<VitalWorker>(15, TimeUnit.MINUTES)
+        val workRequest = PeriodicWorkRequestBuilder<VitalWorker>(5, TimeUnit.HOURS)
             .build()
 //  Application context always exists as long as the app package is in memory.
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
@@ -29,15 +30,19 @@ class VitalTrack : Application() {
         )
     }
 
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val name  = "Vitals Reminder"
-            val descriptionText = "Reminds the mother to log pregnancy vitals"
-            val importance = NotificationManager.IMPORTANCE_HIGH
-            val channel = NotificationChannel("vitals_log",name,importance)
+//    private fun scheduleVitalsReminder() {
+//        val testWork = OneTimeWorkRequestBuilder<VitalWorker>().build()
+//        WorkManager.getInstance(this).enqueue(testWork)
+//    }
 
-            val notificationManager = getSystemService(NotificationManager::class.java)
-            notificationManager.createNotificationChannel(channel)
-        }
+
+    private fun createNotificationChannel() {
+        val name  = "Vitals Reminder"
+        val descriptionText = "Reminds the mother to log pregnancy vitals"
+        val importance = NotificationManager.IMPORTANCE_HIGH
+        val channel = NotificationChannel("vitals_log",name,importance)
+
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
     }
 }

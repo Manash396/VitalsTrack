@@ -10,7 +10,7 @@ Blood Pressure (Systolic / Diastolic)
 Heart Rate
 Weight
 Baby Kicks Count
-Live list updates using StateFlow / LiveData
+Live list updates using StateFlow and Flow
 Clean & intuitive UI with Jetpack Compose
 Reminder notifications using WorkManager
 High-priority notifications that open the app on tap
@@ -34,4 +34,4 @@ KSP
 
 🛠️ How to Run the Project
 Clone the repository:
-https://github.com/Manash396/VitalsTrack.git
+git clone https://github.com/Manash396/VitalsTrack.git
